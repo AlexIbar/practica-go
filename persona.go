@@ -1,12 +1,12 @@
 package main
 
-type Person struct {
+type person struct {
 	nombre           string
 	edad             int
 	cedula           int
 	cuidadRecidencia string
 }
 
-func (p *Person) getNombre() string {
+func (p *person) getNombre() string {
 	return p.nombre
 }

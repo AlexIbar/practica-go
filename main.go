@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	var c = Person{
+	var c = person{
 		nombre:           "Juan",
 		edad:             22,
 		cedula:           1036620,
@@ -17,8 +17,8 @@ func main() {
 
 	fileServe := http.FileServer(http.Dir("public"))
 	http.Handle("/", http.StripPrefix("/", fileServe))
-
-	http.ListenAndServe("8000", nil)
+	Peticiones()
+	http.ListenAndServe(":8000", nil)
 }
 
 //Para poder ejecutar el go run y que en ejecución importe los archivos del mismo paquete debemos hacerlo así: go run *.go
