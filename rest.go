@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -11,9 +13,28 @@ func Peticiones() {
 			w.Write([]byte("Pedido get"))
 		}
 	})
+	http.HandleFunc("/selectUser", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "GET" {
+			/* localhost:8000?nombre="Edwin"&apellido="Ibarra"
+			Muestra
+			ma[nombre["Edwin"]]
+			fmt.Println(r.URL.Query()) */
+			for m, v := range r.URL.Query() {
+				fmt.Printf("%s resultado %s\n", m, v)
+			}
+		}
+	})
 	http.HandleFunc("/agregarUser", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "POST" {
 			w.Write([]byte("Agregar user"))
+			fmt.Println(r.Body)
+			datosDelBody, err := ioutil.ReadAll(r.Body)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Println(string(datosDelBody))
+				fmt.Fprintf(w, " el dato es %s", datosDelBody)
+			}
 		}
 	})
 	http.HandleFunc("/editUser", func(w http.ResponseWriter, r *http.Request) {
