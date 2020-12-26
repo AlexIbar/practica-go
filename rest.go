@@ -19,6 +19,8 @@ func Peticiones() {
 			Muestra
 			ma[nombre["Edwin"]]
 			fmt.Println(r.URL.Query()) */
+			fmt.Println(r.URL.RawQuery)
+			fmt.Println(r.URL.Query().Get("id"))
 			for m, v := range r.URL.Query() {
 				fmt.Printf("%s resultado %s\n", m, v)
 			}
